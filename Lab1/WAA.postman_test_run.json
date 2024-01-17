@@ -1,0 +1,176 @@
+{
+	"id": "27266cdd-0801-47b1-abf7-a369d7dc2567",
+	"name": "WAA",
+	"timestamp": "2024-01-17T01:44:30.603Z",
+	"collection_id": "31642194-6bf58817-64ac-45d8-b8cd-6a52962c085a",
+	"folder_id": "31642194-46680e66-0e87-41d2-9dcf-487645b7288d",
+	"environment_id": "31642194-a25000be-c397-48c9-9282-1554443d683f",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-01-17T01:44:29.660Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "dc5b6226-786d-4a52-b13e-e8c69cf2b4b4",
+			"name": "1. get Request",
+			"url": "http://localhost:8080/api/v1/posts?authorName=O'Reilly",
+			"time": 108,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				108
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "31727a72-f38b-497e-9e43-6d3e19b55d3a",
+			"name": "2. get Request By Id",
+			"url": "http://localhost:8080/api/v1/posts/100",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ef741c79-fda8-4ddf-aa80-3583b5399431",
+			"name": "3. post Request",
+			"url": "http://localhost:8080/api/v1/posts",
+			"time": 34,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				34
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ef8456f2-3248-466a-95d2-5fd0793fe96c",
+			"name": "5. update Request",
+			"url": "http://localhost:8080/api/v1/posts",
+			"time": 19,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				19
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0e042d26-ebf2-4ae7-b311-37b8fde58db1",
+			"name": "6. get Request By Author",
+			"url": "http://localhost:8080/api/v1/posts/byAuthor?byAuthor=O'Reilly",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "bbd53188-5b66-4c17-883b-3c6ab66981cc",
+			"name": "6. get Request By AuthorName",
+			"url": "http://localhost:8080/api/v1/posts/byAuthorName?byAuthorName=Reill",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "96e0ccb7-61b5-4936-8224-1e023e5b1aef",
+			"name": "4. delete Request By Id",
+			"url": "http://localhost:8080/api/v1/posts/200",
+			"time": 5,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 185,
+	"collection": {
+		"requests": [
+			{
+				"id": "dc5b6226-786d-4a52-b13e-e8c69cf2b4b4",
+				"method": "GET"
+			},
+			{
+				"id": "31727a72-f38b-497e-9e43-6d3e19b55d3a",
+				"method": "GET"
+			},
+			{
+				"id": "ef741c79-fda8-4ddf-aa80-3583b5399431",
+				"method": "POST"
+			},
+			{
+				"id": "ef8456f2-3248-466a-95d2-5fd0793fe96c",
+				"method": "PUT"
+			},
+			{
+				"id": "0e042d26-ebf2-4ae7-b311-37b8fde58db1",
+				"method": "GET"
+			},
+			{
+				"id": "bbd53188-5b66-4c17-883b-3c6ab66981cc",
+				"method": "GET"
+			},
+			{
+				"id": "96e0ccb7-61b5-4936-8224-1e023e5b1aef",
+				"method": "DELETE"
+			}
+		]
+	}
+}
