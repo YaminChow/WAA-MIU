@@ -38,6 +38,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/morethanonepost")
     public List<User> findUserWithMoreThanOnePost(){
+
         return userService.findUserWithMoreThanOnePost();
     }
 }

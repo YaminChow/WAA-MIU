@@ -4,6 +4,7 @@ import edu.miu.waa.demoinclasslab1.dto.request.ReqPostDto;
 import edu.miu.waa.demoinclasslab1.dto.request.ReqUserDto;
 import edu.miu.waa.demoinclasslab1.entity.Post;
 import edu.miu.waa.demoinclasslab1.entity.User;
+import edu.miu.waa.demoinclasslab1.help.ListMapper;
 import edu.miu.waa.demoinclasslab1.repo.PostRepo;
 import edu.miu.waa.demoinclasslab1.repo.UserRepo;
 import edu.miu.waa.demoinclasslab1.service.UserService;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService {
     PostRepo postRepo;
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    ListMapper listMapper;
 
     public List<User> findAll(){
         return userRepo.findAll();
@@ -33,25 +36,26 @@ public class UserServiceImpl implements UserService {
     }
 
     public User saveUser(ReqUserDto user){
-        List<Post> posts = new ArrayList<>();
-        for(ReqPostDto post : user.getReqPosts()){
-            posts.add(modelMapper.map(post, Post.class));
-        }
+        List<Post> posts = listMapper.mapList(user.getReqPosts(),new Post());
         User user1 = new User();
         user1.setName(user.getName());
         user1.setPosts(posts);
         return userRepo.save(user1);
     }
     public List<Post> findPostByUserId(long id){
-        User user = userRepo.findById(id).get();
-        List<Post> posts = new ArrayList<>();
-        if(user != null){
-            for (Post p: user.getPosts()){
-                posts.add(p);
+        try{
+            User user = userRepo.findById(id).get();
+
+            if(user != null){
+                List<Post> posts = listMapper.mapList(user.getPosts(), new Post());
+                return posts;
+            }else{
+                throw new RuntimeException("This is no post.");
             }
-            return posts;
+
+        }catch(Exception e){
+            throw new RuntimeException("This is no post.");
         }
-        return null;
     }
     public List<User> findUserWithMoreThanOnePost(){
         List<User> users = userRepo.findAll();
@@ -66,7 +70,4 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-
-
-
 }

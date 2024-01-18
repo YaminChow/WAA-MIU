@@ -1,0 +1,132 @@
+{
+	"id": "c02ed8fd-232f-4e08-a5c0-b71d9e362ff8",
+	"name": "WAA",
+	"timestamp": "2024-01-17T23:25:50.272Z",
+	"collection_id": "31642194-6bf58817-64ac-45d8-b8cd-6a52962c085a",
+	"folder_id": "31642194-94d7171b-f60b-4cdc-bdde-b54549f1ef32",
+	"environment_id": "31642194-a25000be-c397-48c9-9282-1554443d683f",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-01-17T23:25:48.627Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "0143968e-a40d-494d-b6b8-af72b8148384",
+			"name": "user-Get Request",
+			"url": "http://localhost:8080/api/v1/users",
+			"time": 175,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				175
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4bd18caf-22c1-4787-aedc-e116b5cad5e6",
+			"name": "user-Get Request More Than One Post",
+			"url": "http://localhost:8080/api/v1/users/morethanonepost",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ec62669a-e257-4abd-9dac-78bfd964a77c",
+			"name": "user-Get Request By Id",
+			"url": "http://localhost:8080/api/v1/users/1",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				21
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "73444b03-a858-41c4-aec3-57531e374021",
+			"name": "user-Get Request By Id Post",
+			"url": "http://localhost:8080/api/v1/users/3/posts",
+			"time": 24,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				24
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8f62622d-a835-4d53-a391-d8caf9769793",
+			"name": "user-Post Request By Id",
+			"url": "http://localhost:8080/api/v1/users",
+			"time": 73,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				73
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 307,
+	"collection": {
+		"requests": [
+			{
+				"id": "0143968e-a40d-494d-b6b8-af72b8148384",
+				"method": "GET"
+			},
+			{
+				"id": "4bd18caf-22c1-4787-aedc-e116b5cad5e6",
+				"method": "GET"
+			},
+			{
+				"id": "ec62669a-e257-4abd-9dac-78bfd964a77c",
+				"method": "GET"
+			},
+			{
+				"id": "73444b03-a858-41c4-aec3-57531e374021",
+				"method": "GET"
+			},
+			{
+				"id": "8f62622d-a835-4d53-a391-d8caf9769793",
+				"method": "POST"
+			}
+		]
+	}
+}

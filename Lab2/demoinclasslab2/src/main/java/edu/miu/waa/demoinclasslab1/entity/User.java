@@ -14,14 +14,13 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-
+@Table (name ="myuser")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     @OneToMany(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
     @JoinColumn(name ="user_id")
     private List<Post> posts = new ArrayList<>();
 
