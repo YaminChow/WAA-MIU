@@ -31,7 +31,7 @@ public class UserSearchDao {
 
         Join<User, Post> userPostJoin = rootUser.join("posts", JoinType.INNER);
         Join<Commet, Post> commentPostJoin = rootPost.join("commets", JoinType.INNER);
-        criteriaQuery.multiselect(rootUser, rootPost).getParameters().forEach(System.out::println);
+        //criteriaQuery.multiselect(rootUser, rootPost).getParameters().forEach(System.out::println);
 
         System.out.println( ">>>>>>>");
 
@@ -43,8 +43,8 @@ public class UserSearchDao {
         if(userCriteriaRequest.getUserId() != null)
         predicates.add(criteriaBuilder.equal(userPostJoin.getParent().get("id"), userCriteriaRequest.getUserId()));
         if(userCriteriaRequest.getPostId() != null)
-        predicates.add(criteriaBuilder.equal(userPostJoin.get("id"), userCriteriaRequest.getPostId()));
-        if(userCriteriaRequest.getCommentId() != null)
+        predicates.add(criteriaBuilder.equal(commentPostJoin.getParent().get("id"), userCriteriaRequest.getPostId()));
+       if(userCriteriaRequest.getCommentId() != null)
         predicates.add(criteriaBuilder.equal(commentPostJoin.get("id"), userCriteriaRequest.getCommentId()));
         criteriaQuery.where(criteriaBuilder.and((Predicate[]) predicates.toArray(new Predicate[0])));
         criteriaQuery.select(rootUser).distinct(true);
