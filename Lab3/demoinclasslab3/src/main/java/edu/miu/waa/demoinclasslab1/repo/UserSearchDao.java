@@ -29,50 +29,26 @@ public class UserSearchDao {
         Root<User> rootUser = criteriaQuery.from(User.class);
         Root<Post> rootPost = criteriaQuery.from(Post.class);
 
-        Join<Post, User> userPostJoin = rootUser.join("posts", JoinType.INNER);
+        Join<User, Post> userPostJoin = rootUser.join("posts", JoinType.INNER);
         Join<Commet, Post> commentPostJoin = rootPost.join("commets", JoinType.INNER);
+        criteriaQuery.multiselect(rootUser, rootPost).getParameters().forEach(System.out::println);
+
+        System.out.println( ">>>>>>>");
 
         System.out.println("Post User>>>"+userPostJoin.getParent());
         System.out.println("Commet Post>>>"+commentPostJoin.getParent());
 
 
         List<Predicate> predicateList = new ArrayList<Predicate>();
-        predicates.add(criteriaBuilder.equal(userPostJoin.get("id"), userCriteriaRequest.getUserId()));
-        predicates.add(criteriaBuilder.equal(userPostJoin.get("commets").get("id"), userCriteriaRequest.getPostId()));
-        predicates.add(criteriaBuilder.equal(commentPostJoin.getParent().get("commets").get("id"), userCriteriaRequest.getCommentId()));
+        if(userCriteriaRequest.getUserId() != null)
+        predicates.add(criteriaBuilder.equal(userPostJoin.getParent().get("id"), userCriteriaRequest.getUserId()));
+        if(userCriteriaRequest.getPostId() != null)
+        predicates.add(criteriaBuilder.equal(userPostJoin.get("id"), userCriteriaRequest.getPostId()));
+        if(userCriteriaRequest.getCommentId() != null)
+        predicates.add(criteriaBuilder.equal(commentPostJoin.get("id"), userCriteriaRequest.getCommentId()));
         criteriaQuery.where(criteriaBuilder.and((Predicate[]) predicates.toArray(new Predicate[0])));
         criteriaQuery.select(rootUser).distinct(true);
-        return em.createQuery(criteriaQuery).getResultList(); //Without statement#: Throw
-
-
-
-
-//        Predicate userPredicate = criteriaBuilder.equal(rootUser.get("id"), userCriteriaRequest.getPostId());
-//
-//        System.out.println("user: >>>" + userPredicate.toString());
-//        predicates.add(userPredicate);
-//
-//        if(userCriteriaRequest.getPostId()!=null){
-//            System.out.println("post exits.!>>>>");
-//            Predicate postPredicate = criteriaBuilder.equal(rootUser.get("posts").get("id"), userCriteriaRequest.getUserId());
-//            System.out.println("post:: >>>"+postPredicate.toString());
-//            predicates.add(postPredicate);
-//        }
-//        if(userCriteriaRequest.getCommentId()!=null){
-//            System.out.println("Comment exits>>>");
-//            Predicate commetPredicate = criteriaBuilder.equal(rootPost.get("commets").get("id"),userCriteriaRequest.getCommentId());
-//            System.out.println("Comment:: >>>"+commetPredicate.toString());
-//            predicates.add(commetPredicate);
-//        }
-//        predicates.forEach(System.out::println);
-//
-//        criteriaQuery.where(
-//                criteriaBuilder.and(predicates.toArray(new Predicate[0]))
-//        );
-//
-//        TypedQuery<User> query = em.createQuery(criteriaQuery);
-//        query.getResultList().forEach(System.out::println);
-//        return query.getSingleResult();
+        return em.createQuery(criteriaQuery).getResultList();
     }
 
 
