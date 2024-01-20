@@ -46,7 +46,7 @@ public class UserController {
     @GetMapping("/{id}")
     @LogMe
     @ExecutionTime
-    public ResUser findById(@PathVariable("id") long userId){
+    public ResUser findById(@PathVariable("id") long userId) throws Exception{
 
         return userService.findById(userId);
     }
@@ -57,7 +57,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/h/{id}")
     @LogMe
-    public EntityModel<ResUser> findByIdH(@PathVariable("id") long userId){
+    public EntityModel<ResUser> findByIdH(@PathVariable("id") long userId) throws Exception{
 
         EntityModel<ResUser> resUser = EntityModel.of(userService.findById(userId));
         //response all user url
@@ -79,7 +79,7 @@ public class UserController {
     @LogMe
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}/posts")
-    public List<Post> findByIdWithPost(@PathVariable("id") long userId){
+    public List<Post> findByIdWithPost(@PathVariable("id") long userId) throws Exception{
 
         return userService.findPostByUserId(userId);
     }
@@ -95,8 +95,13 @@ public class UserController {
     @LogMe
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping
-    public void delete(@RequestBody ReqUser user){
-        userService.deleteUser(user);
+    public void delete(@RequestBody ReqUser user) throws Exception{
+        try {
+            userService.deleteUser(user);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @LogMe

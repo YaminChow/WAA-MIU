@@ -40,9 +40,13 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll(){
         return userRepo.findAll();
     }
-    public ResUser findById(long userId){
-
-        return modelMapper.map(userRepo.findById(userId).get(),ResUser.class) ;
+    public ResUser findById(long userId) throws Exception{
+        Optional<User> user = userRepo.findById(userId);
+        if(user.isPresent()){
+            return modelMapper.map(user.get(),ResUser.class) ;
+        }else{
+            throw new Exception("User "+ userId+" can't find out.");
+        }
     }
 
     public User saveUser(ReqUserDto user){
@@ -64,26 +68,17 @@ public class UserServiceImpl implements UserService {
         }
     }
     public List<User> findUserWithMoreThanPost(int count){
-        List<User> users = userRepo.findAll();
-        List<User> resUsers = new ArrayList<>();
-        if(users != null){
-            for(User u: users){
-                if(u.getPosts().size()>count){
-                    resUsers.add(u);
-                }
-            }
-           return resUsers;
-        }
-        return null;
+        List<User> users = userRepo.findUserByPostsGreaterThan(count);
+        return users;
     }
-    @Transactional
-    public void deleteUser(ReqUser user){
+
+    public void deleteUser(ReqUser user) throws Exception{
         Optional<User> deleteUser = userRepo.findById(user.getId());
 
             if(deleteUser.isPresent()){
                 userRepo.delete(deleteUser.get());
             }else {
-                throw new EntityNotFoundException("User with ID " + user.getId() + " not found");
+                throw new Exception("User with ID " + user.getId() + " not found");
             }
     }
 

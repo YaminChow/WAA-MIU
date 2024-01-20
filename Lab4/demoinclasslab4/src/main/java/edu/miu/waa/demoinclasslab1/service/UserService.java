@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface UserService {
     List<User> findAll();
-    ResUser findById(long userId);
+    ResUser findById(long userId) throws Exception;
     User saveUser(ReqUserDto user);
     List<Post> findPostByUserId(long id);
     List<User> findUserWithMoreThanPost(int count);
-    void deleteUser(ReqUser user);
+    void deleteUser(ReqUser user) throws Exception;
 
     List<ResUser> findUserByPostTitle(String title);
     List<User> searchUserCriteria(Long postid, Long commentid,Long pId);
