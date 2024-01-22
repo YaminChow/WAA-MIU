@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public User saveUser(ReqUserDto user){
+
         return userRepo.save(modelMapper.map(user, User.class));
     }
     public List<Post> findPostByUserId(long id){
@@ -90,20 +91,29 @@ public class UserServiceImpl implements UserService {
     UserSearchDao userSearchDao;
     @Override
     public List<User> searchUserCriteria(Long postid, Long commentid,Long uId) {
-        System.out.println("post:>>"+ postid);
-        System.out.println("comment:>> "+commentid);
-        System.out.println("User: >>" + uId);
-        System.out.println("==========");
+
         var dtoRequest = new UserCriteriaRequest();
         dtoRequest.setCommentId(commentid);
         dtoRequest.setPostId(postid);
         dtoRequest.setUserId(uId);
-        System.out.println("DTO>>>>>");
-        System.out.println("post:>>"+ dtoRequest.getPostId());
-        System.out.println("comment:>> "+dtoRequest.getCommentId());
-        System.out.println("User: >>" + dtoRequest.getUserId());
-        return userSearchDao.findAllByCriteria(dtoRequest);
 
-//        return reviewSearchDao.findAllBySimpleQuery(comment,stars);
+        return userSearchDao.findAllByCriteria(dtoRequest);
+    }
+
+    public List<User> searchUserCriteria1(Long userId, Long postId,Long commentId ) {
+        List<User> users = new ArrayList<>();
+        if(postId != null && userId != null && commentId != null){
+            users.add(userRepo.findByPostsWithCommentId(userId,postId,commentId));
+            return users;
+        }
+        if(postId != null && userId != null && commentId == null){
+            users.add(userRepo.findByPostId(userId,postId));
+            return users;
+        }
+        if(userId != null && commentId == null && postId == null){
+            users.add(userRepo.findById(userId).get());
+            return users;
+        }
+        return users;
     }
 }

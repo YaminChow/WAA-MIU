@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDtos> findByAuthorName(String authorName) {
-        return (List<PostDtos>) listMapper.mapList(postRepo.findPostByAuthorName(authorName),new PostDtos());
+        return (List<PostDtos>) listMapper.mapList(postRepo.findPostsByAuthorContains(authorName),new PostDtos());
     }
 
     @Override

@@ -35,11 +35,6 @@ public class UserSearchDao {
         //inner join of commet and post
         Join<Commet, Post> commentPostJoin = rootPost.join("commets", JoinType.INNER);
 
-        System.out.println( ">>>>>>>");
-
-        System.out.println("Post User>>>"+userPostJoin.getParent());
-        System.out.println("Commet Post>>>"+commentPostJoin.getParent());
-
         //verify with user id
         if(userCriteriaRequest.getUserId() != null)
         predicates.add(criteriaBuilder.equal(userPostJoin.getParent().get("id"), userCriteriaRequest.getUserId()));

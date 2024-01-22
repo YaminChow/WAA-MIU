@@ -19,7 +19,7 @@ public class Post {
     private String title;
     private String content;
     private String author;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name ="post_id")
     private List<Commet> commets;
 

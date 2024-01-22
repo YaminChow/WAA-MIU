@@ -11,6 +11,7 @@ import edu.miu.waa.demoinclasslab1.dtos.PostDtos;
 import edu.miu.waa.demoinclasslab1.entity.Logger;
 import edu.miu.waa.demoinclasslab1.entity.Post;
 import edu.miu.waa.demoinclasslab1.entity.User;
+import edu.miu.waa.demoinclasslab1.repo.UserRepo;
 import edu.miu.waa.demoinclasslab1.service.UserService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -35,7 +36,8 @@ public class UserController {
     ModelMapper modelMapper;
     @Autowired
     LoggerAspect loggerAspect;
-    @LogMe
+    
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<User> findAll(){
@@ -44,7 +46,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    @LogMe
+
     @ExecutionTime
     public ResUser findById(@PathVariable("id") long userId) throws Exception{
 
@@ -109,7 +111,7 @@ public class UserController {
     @GetMapping("/byPostTitle")
     public List<ResUser> findByIdWithPostTitle(@RequestParam("byPostTitle") String title){
         Logger log = new Logger(UUID.randomUUID().toString(), LocalDate.now(), LocalTime.now(),"admin","findById");
-        //loggerAspect.logMe(log);
+
         return userService.findUserByPostTitle(title);
     }
 
@@ -121,7 +123,8 @@ public class UserController {
             @RequestParam(value = "posts", required = false) Long postid,
             @RequestParam(value = "comments",required = false) Long commentid){
         Logger log = new Logger(UUID.randomUUID().toString(), LocalDate.now(), LocalTime.now(),"admin","findById");
-        //loggerAspect.logMe(log);
-        return userService.searchUserCriteria(postid,commentid,id);
+
+
+        return userService.searchUserCriteria1(id,postid,commentid);
     }
 }

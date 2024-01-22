@@ -19,4 +19,6 @@ public interface UserService {
 
     List<ResUser> findUserByPostTitle(String title);
     List<User> searchUserCriteria(Long postid, Long commentid,Long pId);
+
+    List<User> searchUserCriteria1(Long userId, Long postId,Long commentId );
 }
