@@ -45,8 +45,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/authenticate/**").permitAll()
 //                .requestMatchers("/api/v1/products").hasAuthority("CLIENT")
-                .requestMatchers("/api/v1/users").hasAnyAuthority(roles) // Dynamic authorities
-                .requestMatchers("/api/v1/posts").hasAnyAuthority("CLIENT")
+                .requestMatchers("/api/v1/users").permitAll() // Dynamic authorities
+                .requestMatchers("/api/v1/posts").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

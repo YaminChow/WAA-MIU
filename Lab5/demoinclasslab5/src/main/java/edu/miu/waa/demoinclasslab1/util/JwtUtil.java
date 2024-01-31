@@ -60,7 +60,7 @@ public class JwtUtil {
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
-
+//Genterated token process(use claim, username, current datetime, expired date time, encryption method
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)

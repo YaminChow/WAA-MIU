@@ -12,15 +12,56 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static org.springframework.util.CollectionUtils.arrayToList;
 
 @SpringBootApplication
 public class Demoinclasslab4Application {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(Demoinclasslab4Application.class, args);
+		System.out.println("From front end!");
+
 	}
-	@Bean
+
+//	public ListNode addTwoNumbers() {
+//		int [] arr2 = {5,6,4};
+//		ListNode l2 = (ListNode) arrayToList(arr2);
+//
+//		int [] arr1 ={2,4,3};
+//		ListNode l1 = (ListNode) arrayToList(arr1);
+//
+//		ListNode listNode = new ListNode(0);
+//		ListNode returnNode = listNode;
+//		int val = 0;
+//
+//		while (l1 != null || l2 != null)
+//		{
+//			int val1 = (l1 != null) ? l1.val : 0;
+//			int val2 = (l2 != null) ? l2.val : 0;
+//
+//			int total = val1 + val2 + val;
+//			val = total/10;
+//
+//			returnNode.next = new ListNode(total % 10);
+//			returnNode = returnNode.next;
+//
+//			if(l1 != null) l1 = l1.next;
+//			if(l2 != null) l2 = l2.next;
+//		}
+//		if(val > 0){
+//			returnNode.next = new ListNode(val);
+//		}
+//		System.out.println(listNode);
+//		System.out.println(listNode.next);
+//		return listNode.next;
+//	}
+
+@Bean
 	public ModelMapper getModelMapper(){
 		return new ModelMapper();
 	}
@@ -58,5 +99,14 @@ public class Demoinclasslab4Application {
 			userRepo.save(user2);
 		};
 
+	}
+
+	class ListNode {
+		static int val;
+		ListNode next;
+
+		ListNode(int val) {
+			this.val = val;
+		}
 	}
 }

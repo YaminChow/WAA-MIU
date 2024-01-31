@@ -20,7 +20,6 @@ spring:
     name: spring-data-demo-1
   datasource:
     password: admin
-
     url: jdbc:postgresql://localhost:5432/spring-data-demo
     username: postgres
 

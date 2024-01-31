@@ -2,7 +2,9 @@ package edu.miu.waa.demoinclasslab1.controller;
 
 import edu.miu.waa.demoinclasslab1.dto.request.ReqUpdatePost;
 import edu.miu.waa.demoinclasslab1.dtos.PostDtos;
+import edu.miu.waa.demoinclasslab1.entity.Commet;
 import edu.miu.waa.demoinclasslab1.entity.Post;
+import edu.miu.waa.demoinclasslab1.repo.PostRepo;
 import edu.miu.waa.demoinclasslab1.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,9 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
     @Autowired
     PostService postService;
+
+    @Autowired
+    PostRepo postRepo;
 //    @ResponseStatus(HttpStatus.OK)
 //    @GetMapping
 //    public List<PostDtos>  findAll(){
@@ -68,5 +74,12 @@ public class PostController {
 
         return postService.findByTitle(title) ;
     }
+
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{id}/comments")
+//    public List<Commet> findCommentById(@PathVariable Long id){
+//        return postRepo.findCommentByPostId(id);
+//    }
+
 
 }

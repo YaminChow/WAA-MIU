@@ -16,6 +16,7 @@ import edu.miu.waa.demoinclasslab1.service.UserService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
@@ -41,8 +42,25 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<User> findAll(){
-        return  userService.findAll();
+        return
+                userService.findAll();
     }
+
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/h")
+//    public CollectionModel<List<User>> findAllh(){
+//        List<User> users = userService.findAll();
+//
+//        // Wrap the list of users with CollectionModel
+//       // CollectionModel<List<User>> resUser = CollectionModel.of(users);
+//
+//        // Add link for all users
+//        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder
+//                .linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).findAll());
+//        resUser.add(linkTo.withRel("all-users"));
+//
+//        return resUser;
+//    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")

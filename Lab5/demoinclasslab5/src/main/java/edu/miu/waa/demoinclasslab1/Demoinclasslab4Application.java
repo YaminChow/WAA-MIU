@@ -24,7 +24,7 @@ public class Demoinclasslab4Application {
 	public ModelMapper getModelMapper(){
 		return new ModelMapper();
 	}
-
+//	@Bean
 //	public CommandLineRunner loadData( UserRepo userRepo) {
 //		List<Post> posts = new ArrayList<>();
 //		List<Commet> commets = new ArrayList<>();
