@@ -23,17 +23,17 @@ const NewPost = (props) => {
       <form ref={newPostForm}>
         <h1> Add Post</h1>
 
-        <label>Title</label>
-        <input type="text" label={"title"} name={"title"} />
+        <label>Title </label>
+        <input type="text" label={"title "} name={"title"} />
 
-        <label>Author</label>
+        <label>Author </label>
         <input type="text" label={"author"} name={"author"} />
 
-        <label>Content</label>
-        <input type="text" label={"Content"} name={"content"} />
+        <label>Content </label>
+        <input type="text" label={"Content "} name={"content"} />
       </form>
 
-      <button onClick={addButtonClicked}> Add Product</button>
+      <button onClick={addButtonClicked}> Add Post</button>
     </div>
   );
 };

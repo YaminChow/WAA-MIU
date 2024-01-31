@@ -4,19 +4,20 @@ import Comment from "../Comment/Comment";
 var i = 0;
 
 const PostDetail = (props) => {
-  console.log("<<> postDetail" + props.id);
   console.log("POSTDETAILS UPDATE");
 
   const [postDetail, setPostDetail] = useState({});
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/posts/" + props.id)
-      .then((response) => {
-        setPostDetail(response.data);
-        console.log("RESPONSE:", response.data);
-      })
-      .catch((err) => console.log(err.message));
+    if (props.id > 0) {
+      axios
+        .get("http://localhost:8080/api/v1/posts/" + props.id)
+        .then((response) => {
+          setPostDetail(response.data);
+          console.log("RESPONSE:", response.data);
+        })
+        .catch((err) => console.log(err.message));
+    }
   }, [props.id]);
 
   const deleteButtonClicked = (id) => {

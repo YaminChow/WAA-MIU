@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Posts from "./Posts/Posts";
 import PostDetail from "../components/PostDetail/PostDetail";
 import { ThemeColorContext } from "../store/ThemeColor";
 import NewPost from "../components/NewPost/NewPost";
-import axios from "axios";
-import { fetchService } from "../services/fetchServices";
 
 export default function Dashboard() {
-  const [themeColorState, setThemeColorState] = useState({ color: "red" });
+  const [themeColorState, setThemeColorState] = useState({ color: "blue" });
   const [postsState, setPostsState] = useState([
     { id: 111, title: "Happiness", author: "John" },
     { id: 112, title: "MIU", author: "Dean" },
@@ -19,12 +17,6 @@ export default function Dashboard() {
   const [seletedId, setSeletedId] = useState();
   const [selectedTitle, setSelectedTitle] = useState();
   const [selectedAuthor, setSelectedAuthor] = useState();
-  const [postDetailState, setPostDetailState] = useState({
-    id: "",
-    title: "",
-    author: "",
-  });
-  const [selectedState, setSelectedState] = useState(null);
 
   const onChange = (events) => {
     setPostState(events.target.value);
@@ -87,8 +79,6 @@ export default function Dashboard() {
         </div>
         <div>
           <NewPost changeFetchFlag={changeFetchFlag} />
-          {/* {fetchFlag?<NewPost
-                        changeFetchFlag={changeFetchFlag} />:null}  */}
         </div>
       </ThemeColorContext.Provider>
     </div>
